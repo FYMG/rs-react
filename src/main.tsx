@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import SearchView from '@views/SearchView';
 import './styles/tailwindcss.css';
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
+ReactDOM.createRoot(document.querySelector('#root')!).render(
   <React.StrictMode>
     <SearchView />
   </React.StrictMode>

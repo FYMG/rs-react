@@ -1,10 +1,10 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 
-class Search extends Component {
+class Search extends PureComponent {
   render() {
     return (
       <div>
-        <h1> Search</h1>
+        <h1>Search</h1>
       </div>
     );
   }
