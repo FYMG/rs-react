@@ -54,19 +54,19 @@
     ],
 
     "paths": {
-      "@components/*": ["src/components/*"],
-      "@views/*": ["src/views/*"],
-      "@models/*": ["src/models/*"],
-      "@types/*": ["src/types/*"],
-      "@pages/*": ["src/pages/*"],
+      "@components/*": ["./src/components/*"],
+      "@views/*": ["./src/views/*"],
+      "@models/*": ["./src/models/*"],
+      "@types/*": ["./src/types/*"],
+      "@pages/*": ["./src/pages/*"],
 
-      "@hoc/*": ["src/hoc/*"],
-      "@hooks/*": ["src/hooks/*"],
-      "@utils/*": ["src/utils/*"],
-      "@services/*": ["src/services/*"],
-      "@assets/*": ["src/assets/*"],
-      "@styles/*": ["src/styles/*"],
-      "@tests/*": ["src/tests/*"]
+      "@hoc/*": ["./src/hoc/*"],
+      "@hooks/*": ["./src/hooks/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@services/*": ["./src/services/*"],
+      "@assets/*": ["./src/assets/*"],
+      "@styles/*": ["./src/styles/*"],
+      "@tests/*": ["./src/tests/*"]
     }
   },
 

@@ -1,4 +1,5 @@
 module.exports = {
+  noInlineConfig: true,
   root: true,
   env: { browser: true, es2020: true, node: true },
   plugins: [
@@ -27,7 +28,7 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     sourceType: 'module',
-    project: ['./tsconfig.node.json', './tsconfig.app.json'],
+    project: ['./tsconfig.app.json', './tsconfig.json', './tsconfig.node.json'],
     ecmaFeatures: {
       jsx: true,
     },
@@ -42,6 +43,8 @@ module.exports = {
     'react/react-in-jsx-scope': 0,
     'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     'import/no-extraneous-dependencies': 0,
+
+    'react/jsx-no-constructed-context-values': 0,
 
     'padding-line-between-statements': [
       'error',
