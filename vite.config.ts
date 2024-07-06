@@ -38,9 +38,9 @@ export default defineConfig({
     tsconfigPaths(),
     react(),
     svgr({
-    svgrOptions: {
-      plugins: ['@svgr/plugin-jsx'],
-    },
-  }),
+      svgrOptions: {
+        plugins: ['@svgr/plugin-jsx'],
+      },
+    }),
   ],
 });
