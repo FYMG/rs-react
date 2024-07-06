@@ -1,14 +1,14 @@
-import {Component} from "react";
-import Search from "@components/Search";
+import { Component } from 'react';
+import Search from '@components/Search';
 
 class SearchView extends Component {
-    render() {
-        return (
-            <div>
-                <Search/>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div>
+        <Search />
+      </div>
+    );
+  }
 }
 
-export default SearchView
+export default SearchView;
