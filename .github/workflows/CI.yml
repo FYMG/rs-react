@@ -28,10 +28,10 @@ jobs:
         run: npx tsc
 
       - name: 🔍 ESlint
-        run: npx lint
+        run: npm run lint
 
       - name: 🔍 Stylelint
-        run: npx stylelint
+        run: npm run stylelint
 
       - name: 🧪 test
-        run: npx test:staged
+        run: npm run test:staged
