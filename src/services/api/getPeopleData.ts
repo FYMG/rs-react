@@ -21,7 +21,9 @@ export interface IPeopleData {
 }
 
 export default async function getPeopleData(searchValue: string) {
-  const response = await fetch(`https://swapi.dev/api/people/?search=${searchValue}`);
+  const response = await fetch(
+    `https://swapi.dev/api/people/?search=${searchValue.trim()}`
+  );
 
   if (!response.ok) {
     throw new Error('Failed to fetch data');

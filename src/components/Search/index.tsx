@@ -28,7 +28,7 @@ class Search extends PureComponent<unknown, SearchState> {
   }
 
   private changeHandler(event: ChangeEvent<HTMLInputElement>) {
-    this.setState({ searchValue: event.target.value.trim() });
+    this.setState({ searchValue: event.target.value });
   }
 
   render() {
