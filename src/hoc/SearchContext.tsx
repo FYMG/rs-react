@@ -15,7 +15,7 @@ export interface ISearchContextProperties {
 
 export const SearchContextLocalStorageKey = '@rs-react/search-data';
 
-export const SearchContext = createContext<ISearchContext>({
+export const SearchContext = createContext<ISearchContextValue>({
   searchValue: localStorage.getItem(SearchContextLocalStorageKey) ?? '',
   setSearchValue: () => {},
 });

@@ -7,7 +7,7 @@ import { ISearchContextValue, SearchContext } from '@hoc/SearchContext';
 interface ICardListState {
   isPending: boolean;
   result: IPerson[];
-  searchValue: string;
+  searchValue?: string;
 }
 
 class CardList extends PureComponent<unknown, ICardListState> {
@@ -28,11 +28,11 @@ class CardList extends PureComponent<unknown, ICardListState> {
     });
   }
 
-  componentDidUpdate(_, previousState: ICardListState) {
+  componentDidUpdate(_: unknown, previousState: ICardListState) {
     const { isPending } = this.state;
     const { searchValue } = this.context as ISearchContextValue;
 
-    if ((previousState.searchValue !== searchValue ?? '') && !isPending) {
+    if (previousState.searchValue !== searchValue && !isPending) {
       this.updateCardsData(searchValue).catch(() => {});
     }
   }
