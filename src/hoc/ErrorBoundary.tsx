@@ -18,8 +18,8 @@ class ErrorBoundary extends Component<IErrorBoundaryProperties, IErrorBoundarySt
     console.log('Catched error:', error, errorInfo);
   }
 
-  static getDerivedStateFromError() {
-    console.log('error');
+  static getDerivedStateFromError(error: unknown) {
+    console.log('error', error);
 
     return { hasError: true };
   }

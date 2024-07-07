@@ -2,20 +2,20 @@ import { PureComponent } from 'react';
 import Card from '@components/Card';
 import getPeopleData, { IPerson } from '@services/api/getPeopleData';
 import Spinner from '@assets/spiner.svg?react';
-import SearchContext, { ISearchContextValue } from '../../context/SearchContext';
+import { ISearchContextValue, SearchContext } from '@hoc/SearchContext';
 
 interface ICardListState {
   isPending: boolean;
-  lastSearchValue: string;
   result: IPerson[];
+  searchValue: string;
 }
 
 class CardList extends PureComponent<unknown, ICardListState> {
   constructor(properties: unknown) {
     super(properties);
     this.state = {
-      isPending: true,
-      lastSearchValue: '',
+      isPending: false,
+      searchValue: undefined,
       result: [],
     };
   }
@@ -23,28 +23,30 @@ class CardList extends PureComponent<unknown, ICardListState> {
   componentDidMount() {
     const { searchValue } = this.context as ISearchContextValue;
 
-    this.setNewCardData(searchValue).catch(() => {});
+    this.setState({
+      searchValue,
+    });
   }
 
-  private async setNewCardData(newSearchValue: string) {
-    this.setState({ isPending: true });
+  componentDidUpdate(_, previousState: ICardListState) {
+    const { isPending } = this.state;
+    const { searchValue } = this.context as ISearchContextValue;
+
+    if ((previousState.searchValue !== searchValue ?? '') && !isPending) {
+      this.updateCardsData(searchValue).catch(() => {});
+    }
+  }
+
+  private async updateCardsData(newSearchValue: string) {
+    this.setState({ isPending: true, searchValue: newSearchValue });
     this.setState({
-      lastSearchValue: newSearchValue,
-      result: await getPeopleData(newSearchValue)
-        .then((data) => data.results)
-        .finally(() => {
-          this.setState({ isPending: false });
-        }),
+      result: await getPeopleData(newSearchValue).then((data) => data.results),
+      isPending: false,
     });
   }
 
   render() {
-    const { searchValue } = this.context as ISearchContextValue;
-    const { lastSearchValue, result, isPending } = this.state;
-
-    if (searchValue !== lastSearchValue) {
-      this.setNewCardData(searchValue).catch(() => {});
-    }
+    const { result, isPending } = this.state;
 
     if (!isPending) {
       return (
@@ -60,9 +62,7 @@ class CardList extends PureComponent<unknown, ICardListState> {
 
     return (
       <div className="flex content-center justify-center">
-        <Spinner className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600">
-          Loading...
-        </Spinner>
+        <Spinner className="h-8 w-8 animate-spin fill-blue-600 text-gray-200 dark:text-gray-600" />
       </div>
     );
   }

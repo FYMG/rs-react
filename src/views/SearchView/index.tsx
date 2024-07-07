@@ -1,39 +1,16 @@
 import { PureComponent } from 'react';
 import Search from '@components/Search';
 import CardList from '@components/CardList';
-import SearchContext from '../../context/SearchContext';
+import { SearchContextProvider } from '@hoc/SearchContext';
 
-export interface SearchViewState {
-  searchValue: string;
-}
-
-class SearchView extends PureComponent<unknown, SearchViewState> {
-  constructor(properties: unknown) {
-    super(properties);
-
-    this.state = {
-      searchValue: '',
-    };
-  }
-
-  private setSearchValue(value: string) {
-    this.setState({ searchValue: value });
-  }
-
+class SearchView extends PureComponent {
   render() {
-    const { searchValue } = this.state;
-
     return (
       <div>
-        <SearchContext.Provider
-          value={{
-            searchValue,
-            setSearchValue: this.setSearchValue.bind(this),
-          }}
-        >
+        <SearchContextProvider>
           <Search />
           <CardList />
-        </SearchContext.Provider>
+        </SearchContextProvider>
       </div>
     );
   }

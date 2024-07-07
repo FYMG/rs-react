@@ -1,7 +1,5 @@
 import { ChangeEvent, PureComponent } from 'react';
-import SearchContext, { ISearchContextValue } from '../../context/SearchContext';
-
-export const localStorageKey = '@rs-react/search-data';
+import { ISearchContextValue, SearchContext } from '@hoc/SearchContext';
 
 export interface SearchState {
   searchValue: string;
@@ -11,11 +9,15 @@ class Search extends PureComponent<unknown, SearchState> {
   constructor(properties: unknown) {
     super(properties);
 
-    const searchValue = localStorage.getItem(localStorageKey) ?? '';
-
     this.state = {
-      searchValue: searchValue === 'error' ? '' : searchValue,
+      searchValue: '',
     };
+  }
+
+  componentDidMount() {
+    const { searchValue } = this.context as ISearchContextValue;
+
+    this.setState({ searchValue });
   }
 
   private onClickHandler() {
@@ -27,7 +29,6 @@ class Search extends PureComponent<unknown, SearchState> {
 
   private changeHandler(event: ChangeEvent<HTMLInputElement>) {
     this.setState({ searchValue: event.target.value });
-    localStorage.setItem(localStorageKey, event.target.value);
   }
 
   render() {
@@ -38,7 +39,7 @@ class Search extends PureComponent<unknown, SearchState> {
     }
 
     return (
-      <div className="flex flex-row items-center justify-center">
+      <div className="flex flex-row items-center justify-center gap-2">
         <input
           className="m-2 w-1/2 border-2 border-black"
           type="text"
@@ -48,6 +49,16 @@ class Search extends PureComponent<unknown, SearchState> {
         />
         <button type="button" onClick={this.onClickHandler.bind(this)}>
           Search
+        </button>
+        <button
+          type="button"
+          onClick={() => {
+            this.setState({
+              searchValue: 'error',
+            });
+          }}
+        >
+          make error
         </button>
       </div>
     );

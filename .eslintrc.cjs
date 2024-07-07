@@ -102,6 +102,7 @@ module.exports = {
         },
       },
       rules: {
+        "@typescript-eslint/no-explicit-any": "error",
         'prettier/prettier': 'error',
         'react-compiler/react-compiler': 'error',
         '@typescript-eslint/indent': 0,
