@@ -1,19 +1,25 @@
-import { PureComponent } from 'react';
 import Search from '@components/Search';
 import CardList from '@components/CardList';
-import { SearchContextProvider } from '@hoc/SearchContext';
+import { useState } from 'react';
+import { useData } from '@hooks/useData';
 
-class SearchView extends PureComponent {
-  render() {
-    return (
-      <div>
-        <SearchContextProvider>
-          <Search />
-          <CardList />
-        </SearchContextProvider>
-      </div>
-    );
-  }
+function SearchView() {
+  const [searchQuery, setSearchQuery] = useState('');
+  const { isLoading, isError, data } = useData({
+    url: 'https://swapi.dev/api/people',
+    queryParams: {
+      search: searchQuery,
+    },
+  });
+
+  return (
+    <main>
+      <Search submitSearchValue={setSearchQuery} />
+      {isLoading && <p>Loading...</p>}
+      {isError && <p>Error</p>}
+      {data && !isLoading && <CardList data={data} />}
+    </main>
+  );
 }
 
 export default SearchView;
