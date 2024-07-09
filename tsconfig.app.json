@@ -57,7 +57,6 @@
       "@components/*": ["./src/components/*"],
       "@views/*": ["./src/views/*"],
       "@models/*": ["./src/models/*"],
-      "@types/*": ["./src/types/*"],
       "@pages/*": ["./src/pages/*"],
 
       "@hoc/*": ["./src/hoc/*"],

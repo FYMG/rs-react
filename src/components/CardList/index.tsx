@@ -1,5 +1,5 @@
 import Card from '@components/Card';
-import { IPeopleData } from '@hooks/useData';
+import IPeopleData from '@models/IPeopleData';
 
 function CardList({ data }: { data: IPeopleData }) {
   return (

@@ -1,4 +1,4 @@
-import { IPerson } from '@hooks/useData';
+import IPerson from '@models/IPerson';
 
 function Card({ person }: { person: IPerson }) {
   return (
