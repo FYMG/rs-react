@@ -102,6 +102,8 @@ module.exports = {
         },
       },
       rules: {
+        'react/jsx-props-no-spreading': 0,
+        'react/require-default-props': 0,
         "@typescript-eslint/no-explicit-any": "error",
         'prettier/prettier': 'error',
         'react-compiler/react-compiler': 'error',

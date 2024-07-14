@@ -10,7 +10,7 @@ function Search({ submitSearchValue }: { submitSearchValue: (value: string) => v
         type="text"
         onChange={(event) => setSearchValue(event.target.value)}
         value={searchValue}
-        placeholder='Search (Type "error" to cause an error.)...'
+        placeholder="Search..."
       />
       <button type="button" onClick={() => submitSearchValue(searchValue)}>
         Search

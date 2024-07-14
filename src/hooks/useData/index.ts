@@ -8,7 +8,7 @@ const makeUrl = (url: string, queryParameters: Record<string, string>) => {
   return `${url}?${query}`.trim();
 };
 
-export default function useData<DataType = unknown>({
+export default function useData<DataType = unknown, ErrorType = unknown>({
   url,
   queryParams,
 }: {
@@ -19,7 +19,7 @@ export default function useData<DataType = unknown>({
   const [isError, setIsError] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [data, setData] = useState<undefined | DataType>();
-  const [error, setError] = useState<unknown>();
+  const [error, setError] = useState<ErrorType>();
   const [previousRequestUrl, setPreviousRequestUrl] = useState<undefined | string>();
 
   useEffect(() => {
@@ -41,14 +41,15 @@ export default function useData<DataType = unknown>({
         method: 'GET',
       });
 
-      if (!response.ok) {
-        setError(new Error(`${response.status}: Failed to fetch data`));
+      const responseData = (await response.json()) as unknown;
+
+      if (response.ok) {
+        setData(responseData as DataType);
+        setIsSuccess(true);
+      } else {
+        setError(responseData as ErrorType);
+        setIsError(true);
       }
-
-      const responseData = (await response.json()) as DataType;
-
-      setData(responseData);
-      setIsSuccess(true);
     };
 
     fetchData()
