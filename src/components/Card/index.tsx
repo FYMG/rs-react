@@ -7,7 +7,7 @@ function Card({ person }: { person: Character }) {
       <div className="h-full w-[230px] rounded-2xl">
         <ProgressiveImage
           placeholder={
-            <div className="h-full w-full animate-pulse rounded-2xl bg-zinc-800" />
+            <div className="h-full w-full animate-pulse rounded-2xl bg-amber-900" />
           }
           className="h-full w-full rounded-2xl object-cover object-center"
           src={person.image}

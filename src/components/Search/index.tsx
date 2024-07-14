@@ -1,7 +1,13 @@
 import { useState } from 'react';
 
-function Search({ submitSearchValue }: { submitSearchValue: (value: string) => void }) {
-  const [searchValue, setSearchValue] = useState('');
+function Search({
+  submitSearchValue,
+  defaultValue = '',
+}: {
+  defaultValue?: string;
+  submitSearchValue: (value: string) => void;
+}) {
+  const [searchValue, setSearchValue] = useState(defaultValue);
 
   return (
     <div className="flex flex-row items-center justify-center gap-2">

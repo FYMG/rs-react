@@ -56,10 +56,6 @@ export default function useData<DataType = unknown, ErrorType = unknown>({
       .catch((_error) => {
         setIsError(true);
 
-        if (_error instanceof Error) {
-          setError(_error);
-        }
-
         throw _error;
       })
       .finally(() => {
