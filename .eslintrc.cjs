@@ -102,6 +102,7 @@ module.exports = {
         },
       },
       rules: {
+        '@typescript-eslint/no-throw-literal': 0, //need for throw Response
         'react/jsx-props-no-spreading': 0,
         'react/require-default-props': 0,
         "@typescript-eslint/no-explicit-any": "error",

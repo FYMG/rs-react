@@ -49,6 +49,7 @@ function SearchView() {
               setSearchParameters({
                 ...searchParameters,
                 page: value.toString(),
+                search,
               });
             }}
             pageTotal={data.info.pages}

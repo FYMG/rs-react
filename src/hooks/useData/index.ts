@@ -1,6 +1,10 @@
 import { useEffect, useState } from 'react';
 
-const makeUrl = (url: string, queryParameters: Record<string, string>) => {
+const makeUrl = (url: string, queryParameters: Record<string, string> | undefined) => {
+  if (!queryParameters) {
+    return url;
+  }
+
   const query = Object.entries(queryParameters)
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
@@ -12,7 +16,7 @@ export default function useData<DataType = unknown, ErrorType = unknown>({
   url,
   queryParams,
 }: {
-  queryParams: Record<string, string>;
+  queryParams?: Record<string, string>;
   url: string;
 }) {
   const [isLoading, setIsLoading] = useState(false);
