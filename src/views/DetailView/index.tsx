@@ -1,5 +1,5 @@
 import useData from '@hooks/useData';
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { json, Link, useLocation, useParams } from 'react-router-dom';
 import Spiner from '@components/Spiner';
 import { Character } from '@models/RickAndMortyApiResponse.ts';
 import ProgressiveImage from '@components/ProgressiveImage';
@@ -12,7 +12,10 @@ function DetailView() {
   const location = useLocation();
 
   if (isError) {
-    throw new Response('Not Found', { status: 404, statusText: 'Not Found' });
+    throw json(
+      { message: "page doesn't exist" },
+      { status: 404, statusText: 'Not Found' }
+    );
   }
 
   return (
