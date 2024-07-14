@@ -1,7 +1,7 @@
 import { ImgHTMLAttributes, useState, useEffect, ReactNode } from 'react';
 
 type ImageProperties = ImgHTMLAttributes<HTMLImageElement> & {
-  placeholder: ReactNode;
+  placeholder?: ReactNode;
 };
 
 function ProgressiveImage({ src, alt, placeholder, ...properties }: ImageProperties) {
@@ -24,7 +24,7 @@ function ProgressiveImage({ src, alt, placeholder, ...properties }: ImagePropert
   }, [src]);
 
   if (isLoading) {
-    return placeholder;
+    return placeholder ?? <div>loading...</div>;
   }
 
   return <img src={src} {...properties} alt={alt} />;

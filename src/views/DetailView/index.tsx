@@ -19,7 +19,7 @@ function DetailView() {
   }
 
   return (
-    <div className="flex">
+    <div className="flex" data-testid="detail-view">
       {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
       {isError && error && (
         <span className="self-center justify-self-center">Oops! {error.error}</span>
@@ -28,12 +28,17 @@ function DetailView() {
         <div>
           <div className="flex justify-between">
             <div className="text-xl">Detail view</div>
-            <Link to={`/${location.search}`}>close</Link>
+            <Link to={`/${location.search}`} data-testid="close-button">
+              close
+            </Link>
           </div>
           <div className="h-[230px] w-[230px] rounded-2xl">
             <ProgressiveImage
               placeholder={
-                <div className="h-full w-full animate-pulse rounded-2xl bg-amber-900" />
+                <div
+                  className="h-full w-full animate-pulse rounded-2xl bg-amber-900"
+                  data-testid="img-placeholder"
+                />
               }
               className="h-full w-full rounded-2xl object-cover object-center"
               src={data.image}

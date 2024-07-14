@@ -6,12 +6,15 @@ function Card({ person }: { person: Character }) {
   const location = useLocation();
 
   return (
-    <Link to={`/details/${person.id}${location.search}`}>
+    <Link to={`/details/${person.id}${location.search}`} data-testid="card">
       <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800">
         <div className="h-full w-[230px] rounded-2xl">
           <ProgressiveImage
             placeholder={
-              <div className="h-full w-full animate-pulse rounded-2xl bg-amber-900" />
+              <div
+                className="h-full w-full animate-pulse rounded-2xl bg-amber-900"
+                data-testid="img-placeholder"
+              />
             }
             className="h-full w-full rounded-2xl object-cover object-center"
             src={person.image}
