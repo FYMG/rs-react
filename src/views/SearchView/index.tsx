@@ -1,19 +1,64 @@
-import { PureComponent } from 'react';
 import Search from '@components/Search';
 import CardList from '@components/CardList';
-import { SearchContextProvider } from '@hoc/SearchContext';
+import useData from '@hooks/useData';
+import { RickAndMortyApiResponse } from '@models/RickAndMortyApiResponse';
+import Spiner from '@components/Spiner';
+import Pagination from '@components/Pagination';
+import { useSearchParams } from 'react-router-dom';
+import useSearchParameters from '@hooks/useSearchParameters';
+import useSearch from '@hooks/useSearch';
 
-class SearchView extends PureComponent {
-  render() {
-    return (
-      <div>
-        <SearchContextProvider>
-          <Search />
-          <CardList />
-        </SearchContextProvider>
-      </div>
-    );
-  }
+function SearchView() {
+  const [searchParameters, setSearchParameters] = useSearchParams();
+  const { page = '1' } = useSearchParameters();
+  const [search, setSearch] = useSearch();
+
+  const { isLoading, isError, data, error } = useData<
+    RickAndMortyApiResponse,
+    { error: string }
+  >({
+    url: 'https://rickandmortyapi.com/api/character',
+    queryParams: {
+      name: search,
+      page,
+    },
+  });
+
+  return (
+    <main className="grid h-full w-full">
+      <Search
+        defaultValue={search}
+        submitSearchValue={(value) => {
+          setSearch(value);
+          setSearchParameters({
+            ...searchParameters,
+            page: '1',
+            search: value,
+          });
+        }}
+      />
+      {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
+      {isError && error && (
+        <span className="self-center justify-self-center">Oops! {error.error}</span>
+      )}
+      {data && !isLoading && !isError && (
+        <div>
+          <CardList data={data} />
+          <Pagination
+            onPageChange={(value) => {
+              setSearchParameters({
+                ...searchParameters,
+                page: value.toString(),
+                search,
+              });
+            }}
+            pageTotal={data.info.pages}
+            currentPage={Number.parseInt(page, 10)}
+          />
+        </div>
+      )}
+    </main>
+  );
 }
 
 export default SearchView;

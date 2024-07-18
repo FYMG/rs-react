@@ -1,26 +1,42 @@
-import { PureComponent } from 'react';
-import { IPerson } from '@services/api/getPeopleData';
+import { Character } from '@models/RickAndMortyApiResponse';
+import ProgressiveImage from '@components/ProgressiveImage';
+import { Link, useLocation } from 'react-router-dom';
 
-export interface ICardProperties {
-  person: IPerson;
-}
+function Card({ person }: { person: Character }) {
+  const location = useLocation();
 
-class Card extends PureComponent<ICardProperties> {
-  render() {
-    const { person } = this.props;
-
-    return (
-      <div className="flex flex-col content-center border border-black">
-        <p className="text-xl">
-          {person.name} ({person.birth_year})
-        </p>
-        <p>height {person.height}</p>
-        <p>mass {person.mass}</p>
-
-        <p>gender {person.gender}</p>
-      </div>
-    );
-  }
+  return (
+    <Link to={`/details/${person.id}${location.search}`} data-testid="card">
+      <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800">
+        <div className="h-full w-[230px] rounded-2xl">
+          <ProgressiveImage
+            placeholder={
+              <div
+                className="h-full w-full animate-pulse rounded-2xl bg-amber-900"
+                data-testid="img-placeholder"
+              />
+            }
+            className="h-full w-full rounded-2xl object-cover object-center"
+            src={person.image}
+            alt={person.name}
+          />
+        </div>
+        <div className="p-3 text-white">
+          <h3 className="text-4xl">{person.name}</h3>
+          <div>
+            <p>
+              {person.status} - {person.species} ({person.gender})
+            </p>
+            <p>{person.type}</p>
+          </div>
+          <div>
+            <p>Last known location:</p>
+            <p>{person.location.name}</p>
+          </div>
+        </div>
+      </article>
+    </Link>
+  );
 }
 
 export default Card;

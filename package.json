@@ -7,20 +7,21 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "preview": "vite preview",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives",
-    "lint:fix": "eslint . --ext ts,tsx --report-unused-disable-directives --fix",
+    "lint": "eslint **/*.{ts,tsx} --report-unused-disable-directives",
+    "lint:fix": "eslint **/*.{ts,tsx} --report-unused-disable-directives --fix",
     "format:fix": "prettier . --write",
     "stylelint": "stylelint src/**/*.{css,scss,sass,less,styl,vue}",
     "stylelint:fix": "stylelint src/**/*.{css,scss,sass,less,styl,vue} --fix",
-    "test": "vitest",
-    "test:staged": "vitest --run",
-    "coverage": "vitest run --coverage",
+    "test": "vitest -u",
+    "test:staged": "vitest --run -u",
+    "coverage": "vitest run --coverage -u",
     "prepare": "husky",
     "deploy": "vite build && gh-pages -d dist"
   },
   "dependencies": {
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.24.1"
   },
   "devDependencies": {
     "@commitlint/config-conventional": "^19.2.2",

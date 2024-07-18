@@ -102,6 +102,11 @@ module.exports = {
         },
       },
       rules: {
+        'sonarjs/no-duplicate-string': 0,
+        'unicorn/no-null': 0,
+        '@typescript-eslint/no-throw-literal': 0, //need for throw Response
+        'react/jsx-props-no-spreading': 0,
+        'react/require-default-props': 0,
         "@typescript-eslint/no-explicit-any": "error",
         'prettier/prettier': 'error',
         'react-compiler/react-compiler': 'error',
@@ -129,6 +134,12 @@ module.exports = {
               },
             ],
           },
+        },
+        {
+          files: ['*.text.ts', '*.test.tsx'],
+          rules: {
+            '@typescript-eslint/unbound-method': 0,
+          }
         },
       ],
     },
