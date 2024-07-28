@@ -7,6 +7,7 @@ import Pagination from '@components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import useSearchParameters from '@hooks/useSearchParameters';
 import useSearch from '@hooks/useSearch';
+import ItemsActionsModal from '@components/ItemsActionsModal';
 
 function SearchView() {
   const [searchParameters, setSearchParameters] = useSearchParams();
@@ -55,6 +56,7 @@ function SearchView() {
             pageTotal={data.info.pages}
             currentPage={Number.parseInt(page, 10)}
           />
+          <ItemsActionsModal />
         </div>
       )}
     </main>

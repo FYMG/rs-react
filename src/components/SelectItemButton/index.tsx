@@ -23,7 +23,7 @@ function SelectItemButton({ item, onClick }: ISelectItemButtonProperties) {
 
   return (
     <button onClick={onClickHandler} type="button">
-      {isItemExists ? 'Deselect' : 'Select'}
+      {isItemExists ? 'Unselect' : 'Select'}
     </button>
   );
 }

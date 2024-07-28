@@ -32,11 +32,13 @@ export const selectStore = createSlice({
 
 export const { addItem, removeItem, clear } = selectStore.actions;
 
-export const itemsCount = (state: RootState) => state.selectStore.items.length;
+export const itemsCount = (state: RootState): number => state.selectStore.items.length;
 
 export const itemExists =
   (id: number) =>
   (state: RootState): boolean =>
     state.selectStore.items.some((item) => item.id === id);
+
+export const selectItems = (state: RootState): Character[] => state.selectStore.items;
 
 export default selectStore.reducer;
