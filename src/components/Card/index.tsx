@@ -1,6 +1,7 @@
 import { Character } from '@models/RickAndMortyApiResponse';
 import ProgressiveImage from '@components/ProgressiveImage';
 import { Link, useLocation } from 'react-router-dom';
+import SelectItemButton from '@components/SelectItemButton';
 
 function Card({ person }: { person: Character }) {
   const location = useLocation();
@@ -33,6 +34,7 @@ function Card({ person }: { person: Character }) {
             <p>Last known location:</p>
             <p>{person.location.name}</p>
           </div>
+          <SelectItemButton key={person.id} item={person} />
         </div>
       </article>
     </Link>
