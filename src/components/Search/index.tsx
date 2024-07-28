@@ -10,7 +10,7 @@ function Search({
   const [searchValue, setSearchValue] = useState(defaultValue);
 
   return (
-    <div className="flex flex-row items-center justify-center gap-2">
+    <div className="flex w-full flex-row items-center justify-center gap-2">
       <input
         className="m-2 w-1/2 border-2 border-black"
         type="text"

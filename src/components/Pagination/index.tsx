@@ -10,7 +10,7 @@ function Pagination({ onPageChange, pageTotal, currentPage }: IPaginationPropert
       {pageTotal > 0 &&
         Array.from({ length: pageTotal }).map((_, index) => (
           <button
-            className={`${index + 1 === currentPage ? 'bg-blue-600 text-white' : 'bg-white'}`}
+            className={`${index + 1 === currentPage ? 'bg-blue-600 text-white' : 'bg-none'}`}
             type="button"
             key={`page-${index + 1}`}
             onClick={() => {

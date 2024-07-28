@@ -8,7 +8,7 @@ function Card({ person }: { person: Character }) {
 
   return (
     <Link to={`/details/${person.id}${location.search}`} data-testid="card">
-      <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800">
+      <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800 dark:bg-zinc-950">
         <div className="h-full w-[230px] rounded-2xl">
           <ProgressiveImage
             placeholder={

@@ -22,7 +22,7 @@ function DetailView() {
         <span className="self-center justify-self-center">Oops! Data not fetched</span>
       )}
       {data && !isLoading && !isError && (
-        <div className="sticky top-0 rounded-2xl bg-zinc-800 p-8 text-white">
+        <div className="sticky top-0 rounded-2xl bg-zinc-800 p-8 text-white dark:bg-zinc-950">
           <div className="flex justify-between">
             <div className="text-xl">Details:</div>
             <Link to={`/${location.search}`} data-testid="close-button">
