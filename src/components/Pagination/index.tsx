@@ -6,7 +6,7 @@ interface IPaginationProperties {
 
 function Pagination({ onPageChange, pageTotal, currentPage }: IPaginationProperties) {
   return (
-    <div className="flex flex-row justify-center gap-2 p-2">
+    <div className="flex flex-row flex-wrap justify-center gap-2 p-2">
       {pageTotal > 0 &&
         Array.from({ length: pageTotal }).map((_, index) => (
           <button

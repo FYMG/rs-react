@@ -10,7 +10,7 @@ function ItemsActionsModal() {
 
   return createPortal(
     totalSelected > 0 && (
-      <div className="fixed bottom-2 right-2 z-10 flex flex-col">
+      <div className="fixed bottom-2 right-2 z-10 flex flex-col rounded-2xl bg-zinc-800 p-4 text-white">
         <h2>Total selected: {totalSelected}</h2>
         <div className="flex gap-2">
           <button type="button" onClick={() => dispatch(clear())}>

@@ -19,15 +19,15 @@ function DetailView() {
   }
 
   return (
-    <div className="flex" data-testid="detail-view">
+    <div className="relative" data-testid="detail-view">
       {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
       {isError && error && (
         <span className="self-center justify-self-center">Oops! {error.error}</span>
       )}
       {data && !isLoading && !isError && (
-        <div>
+        <div className="sticky top-0 rounded-2xl bg-zinc-800 p-8 text-white">
           <div className="flex justify-between">
-            <div className="text-xl">Detail view</div>
+            <div className="text-xl">Details:</div>
             <Link to={`/${location.search}`} data-testid="close-button">
               close
             </Link>
@@ -45,7 +45,7 @@ function DetailView() {
               alt={data.name}
             />
           </div>
-          <div className="p-3 text-black">
+          <div className="p-3">
             <h3 className="text-4xl">{data.name}</h3>
             <div>
               <p>

@@ -1,4 +1,3 @@
-import Search from '@components/Search';
 import CardList from '@components/CardList';
 import useData from '@hooks/useData';
 import { RickAndMortyApiResponse } from '@models/RickAndMortyApiResponse';
@@ -12,7 +11,7 @@ import ItemsActionsModal from '@components/ItemsActionsModal';
 function SearchView() {
   const [searchParameters, setSearchParameters] = useSearchParams();
   const { page = '1' } = useSearchParameters();
-  const [search, setSearch] = useSearch();
+  const [search] = useSearch();
 
   const { isLoading, isError, data, error } = useData<
     RickAndMortyApiResponse,
@@ -27,17 +26,6 @@ function SearchView() {
 
   return (
     <main className="grid h-full w-full">
-      <Search
-        defaultValue={search}
-        submitSearchValue={(value) => {
-          setSearch(value);
-          setSearchParameters({
-            ...searchParameters,
-            page: '1',
-            search: value,
-          });
-        }}
-      />
       {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
       {isError && error && (
         <span className="self-center justify-self-center">Oops! {error.error}</span>
