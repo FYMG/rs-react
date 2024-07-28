@@ -6,11 +6,11 @@ interface IPaginationProperties {
 
 function Pagination({ onPageChange, pageTotal, currentPage }: IPaginationProperties) {
   return (
-    <div className="flex flex-row justify-center gap-2 p-2">
+    <div className="flex flex-row flex-wrap justify-center gap-2 p-2">
       {pageTotal > 0 &&
         Array.from({ length: pageTotal }).map((_, index) => (
           <button
-            className={`${index + 1 === currentPage ? 'bg-blue-600 text-white' : 'bg-white'}`}
+            className={`${index + 1 === currentPage ? 'bg-blue-600 text-white' : 'bg-none'}`}
             type="button"
             key={`page-${index + 1}`}
             onClick={() => {

@@ -1,13 +1,14 @@
 import { Character } from '@models/RickAndMortyApiResponse';
 import ProgressiveImage from '@components/ProgressiveImage';
 import { Link, useLocation } from 'react-router-dom';
+import SelectItemButton from '@components/SelectItemButton';
 
 function Card({ person }: { person: Character }) {
   const location = useLocation();
 
   return (
     <Link to={`/details/${person.id}${location.search}`} data-testid="card">
-      <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800">
+      <article className="flex h-[220px] w-[600px] flex-row content-center rounded-2xl border border-black bg-zinc-800 dark:bg-zinc-950">
         <div className="h-full w-[230px] rounded-2xl">
           <ProgressiveImage
             placeholder={
@@ -33,6 +34,7 @@ function Card({ person }: { person: Character }) {
             <p>Last known location:</p>
             <p>{person.location.name}</p>
           </div>
+          <SelectItemButton key={person.id} item={person} />
         </div>
       </article>
     </Link>

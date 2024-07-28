@@ -102,6 +102,7 @@ module.exports = {
         },
       },
       rules: {
+        'no-param-reassign': 0, // bad redux experience
         'sonarjs/no-duplicate-string': 0,
         'unicorn/no-null': 0,
         '@typescript-eslint/no-throw-literal': 0, //need for throw Response

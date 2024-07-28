@@ -32,6 +32,7 @@ export default defineConfig({
     coverage: {
       include: ['src/**/*.{js,ts,jsx,tsx}'],
       reporter: ['text', 'json', 'html'],
+      exclude: ['src/test/**.*'],
     },
   },
   plugins: [

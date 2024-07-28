@@ -1,15 +1,14 @@
+import { describe } from 'vitest';
 import { render } from '@testing-library/react';
-import DetailView from '@views/DetailView/index';
-
-import { describe, expect } from 'vitest';
-
 import { BrowserRouterWrapper } from '@tests/wrappers.tsx';
+import SelectItemButton from '@components/SelectItemButton/index';
+import MockResponse from '@tests/mock/mockResponse';
 
-describe('DetailView', () => {
+describe('SelectItemButton component', () => {
   it('renders correctly', () => {
     const { container } = render(
       <BrowserRouterWrapper>
-        <DetailView />
+        <SelectItemButton item={MockResponse.results[0]} />
       </BrowserRouterWrapper>
     );
 
