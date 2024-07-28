@@ -1,26 +1,26 @@
 import { render, screen } from '@testing-library/react';
 import Card from '@components/Card/index';
-import { BrowserRouter } from 'react-router-dom';
 import mockResponse from '@tests/mock/mockResponse';
 import { describe } from 'vitest';
+import { BrowserRouterWrapper } from '@tests/wrappers.tsx';
 
 const mockPerson = mockResponse.results[0]!;
 
 describe('Card component', () => {
   it('renders correctly', () => {
     const { container } = render(
-      <BrowserRouter>
+      <BrowserRouterWrapper>
         <Card person={mockPerson} />
-      </BrowserRouter>
+      </BrowserRouterWrapper>
     );
 
     expect(container).toMatchSnapshot();
   });
   it('displays loading indicator while fetching data', () => {
     const { getByTestId } = render(
-      <BrowserRouter>
+      <BrowserRouterWrapper>
         <Card person={mockPerson} />
-      </BrowserRouter>
+      </BrowserRouterWrapper>
     );
     const loadingIndicator = getByTestId('img-placeholder');
 
@@ -29,9 +29,9 @@ describe('Card component', () => {
 
   it('displays correct character information', () => {
     render(
-      <BrowserRouter>
+      <BrowserRouterWrapper>
         <Card person={mockPerson} />
-      </BrowserRouter>
+      </BrowserRouterWrapper>
     );
 
     expect(screen.getByText('Abadango Cluster Princess')).toBeInTheDocument();

@@ -1,15 +1,15 @@
 import CardList from '@components/CardList/index';
 import { render } from '@testing-library/react';
-import { BrowserRouter } from 'react-router-dom';
 import mockResponse from '@tests/mock/mockResponse';
 import { RickAndMortyApiResponse } from '@models/RickAndMortyApiResponse';
+import { BrowserRouterWrapper } from '@tests/wrappers.tsx';
 
 describe('CardList component', () => {
   it('renders the correct number of cards', () => {
     const { getAllByTestId } = render(
-      <BrowserRouter>
+      <BrowserRouterWrapper>
         <CardList data={mockResponse} />
-      </BrowserRouter>
+      </BrowserRouterWrapper>
     );
     const cards = getAllByTestId('card');
 

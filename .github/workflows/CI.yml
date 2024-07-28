@@ -35,3 +35,6 @@ jobs:
 
       - name: 🧪 Tests
         run: npm run test:staged
+
+      - name: 🧪 Tests coverage
+        run: npm run coverage

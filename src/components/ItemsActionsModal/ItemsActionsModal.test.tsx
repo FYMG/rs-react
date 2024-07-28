@@ -1,13 +1,12 @@
-import { describe } from 'vitest';
 import { render } from '@testing-library/react';
 import { BrowserRouterWrapper } from '@tests/wrappers';
-import Search from '@components/Search/index';
+import ItemsActionsModal from '@components/ItemsActionsModal/index';
 
-describe('Search component', () => {
+describe('ItemsActionsModal component', () => {
   it('renders correctly', () => {
     const { container } = render(
       <BrowserRouterWrapper>
-        <Search submitSearchValue={() => {}} defaultValue="1" />
+        <ItemsActionsModal />
       </BrowserRouterWrapper>
     );
 
