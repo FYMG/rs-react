@@ -1,15 +1,12 @@
-import useData from '@hooks/useData';
 import { json, Link, useLocation, useParams } from 'react-router-dom';
 import Spiner from '@components/Spiner';
-import { Character } from '@models/RickAndMortyApiResponse.ts';
 import ProgressiveImage from '@components/ProgressiveImage';
+import { useGetCharacterByIdQuery } from '@services/redux/query/rickAndMortyApi';
 
 function DetailView() {
   const { id } = useParams();
-  const { data, isError, error, isLoading } = useData<Character, { error: string }>({
-    url: `https://rickandmortyapi.com/api/character/${id ?? ''}`,
-  });
   const location = useLocation();
+  const { data, error, isLoading, isError } = useGetCharacterByIdQuery(id ?? '');
 
   if (isError) {
     throw json(
@@ -22,7 +19,7 @@ function DetailView() {
     <div className="relative" data-testid="detail-view">
       {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
       {isError && error && (
-        <span className="self-center justify-self-center">Oops! {error.error}</span>
+        <span className="self-center justify-self-center">Oops! Data not fetched</span>
       )}
       {data && !isLoading && !isError && (
         <div className="sticky top-0 rounded-2xl bg-zinc-800 p-8 text-white">

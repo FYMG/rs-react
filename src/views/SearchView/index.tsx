@@ -1,34 +1,27 @@
 import CardList from '@components/CardList';
-import useData from '@hooks/useData';
-import { RickAndMortyApiResponse } from '@models/RickAndMortyApiResponse';
 import Spiner from '@components/Spiner';
 import Pagination from '@components/Pagination';
 import { useSearchParams } from 'react-router-dom';
 import useSearchParameters from '@hooks/useSearchParameters';
 import useSearch from '@hooks/useSearch';
 import ItemsActionsModal from '@components/ItemsActionsModal';
+import { useGetAllCharacterQuery } from '@services/redux/query/rickAndMortyApi';
 
 function SearchView() {
   const [searchParameters, setSearchParameters] = useSearchParams();
   const { page = '1' } = useSearchParameters();
   const [search] = useSearch();
 
-  const { isLoading, isError, data, error } = useData<
-    RickAndMortyApiResponse,
-    { error: string }
-  >({
-    url: 'https://rickandmortyapi.com/api/character',
-    queryParams: {
-      name: search,
-      page,
-    },
+  const { isLoading, isError, data, error } = useGetAllCharacterQuery({
+    name: search,
+    page,
   });
 
   return (
     <main className="grid h-full w-full">
       {isLoading && <Spiner className="h-9 w-9 self-center justify-self-center" />}
       {isError && error && (
-        <span className="self-center justify-self-center">Oops! {error.error}</span>
+        <span className="self-center justify-self-center">Oops! Data not fetched</span>
       )}
       {data && !isLoading && !isError && (
         <div>
